@@ -1,6 +1,5 @@
 import { Outfit } from 'next/font/google';
 import "./globals.css";
-import { ClerkProvider } from '@clerk/nextjs';
 //import 'react-toastify/dist/ReactToastify.css';
 
 const outfit = Outfit({
@@ -18,15 +17,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
 
-      <ClerkProvider>
-
-        <body
-          className={`${outfit.className} bg-[#F7FBFF] text-[#353535] pb-7`}
-        >
-          {children}
-        </body>
-
-      </ClerkProvider>
+      <body
+        className={`${outfit.className} bg-[#F7FBFF] text-[#353535] pb-7`}
+      >
+        {children}
+      </body>
 
     </html>
   );

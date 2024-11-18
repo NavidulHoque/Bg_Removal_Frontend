@@ -1,11 +1,13 @@
 import NavbarLogo from "@/icons/NavbarLogo";
-import Button from "./Button";
+import FormComp from "./FormComp";
 import Link from "next/link";
-import { currentUser } from "@clerk/nextjs/server";
-import { UserButton } from "@clerk/nextjs";
+import { auth } from "@/auth";
 
 export default async function Navbar() {
-  const user = await currentUser()
+
+  const session = await auth()
+
+  console.log(session)
   
   return (
     <nav className="w-full flex-between py-5">
@@ -17,7 +19,7 @@ export default async function Navbar() {
         <NavbarLogo />
       </Link>
       
-      {user ? <UserButton /> : <Button />}
+      {session?.user ? session?.user?.name : <FormComp />}
       
     </nav>
   )
