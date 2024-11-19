@@ -20,7 +20,8 @@ import Link from "next/link"
 const formSchema = z.object({
 
   username: z.string()
-    .min(3, { message: "Username must be at least 3 characters." })
+    .min(4, { message: "Username must be at least 4 characters" })
+    .max(10, { message: "Username cannot exceed 10 characters" })
     .regex(/^[a-zA-Z0-9]+$/, { message: "Username can only contain alphanumeric characters (no special characters or spaces allowed)." }),
 
   email: z.string().email({ message: "Invalid email address" }),
@@ -43,7 +44,6 @@ export default function Registration() {
   })
 
   const { isSubmitting } = form.formState;
-
 
   function onSubmit(values: z.infer<typeof formSchema>) {
 
