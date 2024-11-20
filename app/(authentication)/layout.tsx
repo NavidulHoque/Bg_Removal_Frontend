@@ -1,4 +1,4 @@
-import ClientHeading from '@/components/authentication/ClientHeading';
+import ClientHeading from '@/components/authentication/ShowHeading';
 import ProvidersForm from '@/components/authentication/ProvidersForm';
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";

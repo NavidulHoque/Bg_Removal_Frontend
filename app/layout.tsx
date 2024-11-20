@@ -1,6 +1,6 @@
 import { Outfit } from 'next/font/google';
 import "./globals.css";
-//import 'react-toastify/dist/ReactToastify.css';
+import { Toaster } from "@/components/ui/toaster"
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -20,6 +20,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body
         className={`${outfit.className} bg-[#F7FBFF] text-[#353535] pb-7`}
       >
+        <Toaster />
         {children}
       </body>
 

@@ -20,13 +20,15 @@ import Link from "next/link"
 const formSchema = z.object({
 
   username: z.string()
+    .min(1, "Username is required")
     .min(4, { message: "Username must be at least 4 characters" })
     .max(10, { message: "Username cannot exceed 10 characters" })
     .regex(/^[a-zA-Z0-9]+$/, { message: "Username can only contain alphanumeric characters (no special characters or spaces allowed)." }),
 
-  email: z.string().email({ message: "Invalid email address" }),
+  email: z.string().email({ message: "Invalid email address" }).min(1, "Email is required"),
 
   password: z.string()
+    .min(1, "Password is required")
     .min(8, { message: "Password must be at least 8 characters long" })
     .regex(/^(?=.*\d)(?=.*[\W_]).{8,}$/, { message: "Password must contain at least one number and one special character" })
 })

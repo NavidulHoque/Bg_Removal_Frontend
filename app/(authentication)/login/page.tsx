@@ -16,14 +16,19 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
+import { credentialLogin } from "../actions"
+import { useRouter } from "next/navigation";
+import { useState } from "react"
 
 const formSchema = z.object({
 
-  email: z.string().email({ message: "Invalid email address" }),
-  password: z.string()
+  email: z.string().min(1, "Email is required").email({ message: "Invalid email address" }),
+  password: z.string().min(1, "Password is required")
 })
 
 export default function Login() {
+
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -35,9 +40,28 @@ export default function Login() {
 
   const { isSubmitting } = form.formState;
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
 
-    console.log(values)
+    try {
+
+      const response = await credentialLogin(values);
+
+      if (response.error) {
+        throw new Error(response.error.message)
+      } 
+      
+      else {
+        router.push("/");
+      }
+    } 
+    
+    catch (error) {
+
+      if (error instanceof Error) {
+        setError(error.message);
+      }
+
+    }
   }
 
   return (

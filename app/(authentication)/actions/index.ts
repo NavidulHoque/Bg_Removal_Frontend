@@ -10,3 +10,21 @@ export async function login(formData: FormData) {
 export async function logout() {
   await signOut({ redirectTo: "/" });
 }
+
+export async function credentialLogin({email, password}: {email: string, password: string}) {
+
+  try {
+
+    const response = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    })
+
+    return response
+  } 
+
+  catch (error) {
+    throw error
+  }
+}
