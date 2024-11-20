@@ -15,6 +15,11 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
+import axios from "axios"
+import { url } from "@/url"
+import { useRouter } from "next/navigation";
+import { ToastAction } from "@/components/ui/toast"
+import { useToast } from "@/hooks/use-toast"
 
 
 const formSchema = z.object({
@@ -36,6 +41,9 @@ const formSchema = z.object({
 
 export default function Registration() {
 
+  const router = useRouter();
+  const { toast } = useToast()
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,9 +55,48 @@ export default function Registration() {
 
   const { isSubmitting } = form.formState;
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
 
-    console.log(values)
+    try {
+
+      const response = await axios.post(url + "/auth/registration", {
+        username: values.username,
+        email: values.email,
+        password: values.password
+      })
+
+      if (response.data.status) {
+
+        toast({
+          description: response.data.message,
+        })
+
+        form.reset();
+
+        const timeOutID = setTimeout(() => {
+          router.push("/login")
+        }, 2000)
+
+        return () => clearTimeout(timeOutID)
+      }
+
+      else {
+        throw new Error(response.data.message)
+      }
+    }
+
+    catch (error) {
+
+      if (error instanceof Error) {
+
+        toast({
+          variant: "destructive",
+          description: error.message,
+          action: <ToastAction altText="Try again">Try again</ToastAction>
+        })
+
+      }
+    }
   }
 
   return (

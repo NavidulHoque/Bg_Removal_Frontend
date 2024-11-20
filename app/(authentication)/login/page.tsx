@@ -18,7 +18,9 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { credentialLogin } from "../actions"
 import { useRouter } from "next/navigation";
-import { useState } from "react"
+import { ToastAction } from "@/components/ui/toast"
+import { useToast } from "@/hooks/use-toast"
+
 
 const formSchema = z.object({
 
@@ -26,9 +28,11 @@ const formSchema = z.object({
   password: z.string().min(1, "Password is required")
 })
 
+
 export default function Login() {
 
   const router = useRouter();
+  const { toast } = useToast()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -51,6 +55,7 @@ export default function Login() {
       } 
       
       else {
+        form.reset();
         router.push("/");
       }
     } 
@@ -58,9 +63,13 @@ export default function Login() {
     catch (error) {
 
       if (error instanceof Error) {
-        setError(error.message);
-      }
 
+        toast({
+          variant: "destructive",
+          description: error.message,
+          action: <ToastAction altText="Try again">Try again</ToastAction>
+        })
+      }
     }
   }
 
