@@ -62,13 +62,15 @@ export default function Registration() {
       const response = await axios.post(url + "/auth/registration", {
         username: values.username,
         email: values.email,
-        password: values.password
+        password: values.password,
+        provider: "credentials"
       })
 
       if (response.data.status) {
 
         toast({
-          description: response.data.message,
+          variant: "success",
+          description: response.data.message
         })
 
         form.reset();
@@ -90,7 +92,7 @@ export default function Registration() {
       if (error instanceof Error) {
 
         toast({
-          variant: "destructive",
+          variant: "error",
           description: error.message,
           action: <ToastAction altText="Try again">Try again</ToastAction>
         })

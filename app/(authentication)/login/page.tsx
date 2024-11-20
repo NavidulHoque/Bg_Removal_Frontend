@@ -65,7 +65,7 @@ export default function Login() {
       if (error instanceof Error) {
 
         toast({
-          variant: "destructive",
+          variant: "error",
           description: error.message,
           action: <ToastAction altText="Try again">Try again</ToastAction>
         })

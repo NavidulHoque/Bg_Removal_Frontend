@@ -1,4 +1,4 @@
-import ClientHeading from '@/components/authentication/ShowHeading';
+import ShowHeading from '@/components/authentication/ShowHeading';
 import ProvidersForm from '@/components/authentication/ProvidersForm';
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
@@ -14,7 +14,7 @@ export default async function Layout({ children }: Readonly<{ children: React.Re
 
       <div className='w-full max-w-md bg-white shadow-lg rounded-lg p-8 flex-column gap-y-6'>
 
-        <ClientHeading />
+        <ShowHeading />
 
         <ProvidersForm />
 
