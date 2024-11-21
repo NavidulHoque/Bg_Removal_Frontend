@@ -7,7 +7,7 @@ export default async function Navbar() {
 
   const session = await auth()
 
-  //console.log(session)
+  console.log(session)
   
   return (
     <nav className="w-full flex-between py-5">

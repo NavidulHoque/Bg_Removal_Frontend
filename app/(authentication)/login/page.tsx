@@ -20,11 +20,13 @@ import { credentialLogin } from "../actions"
 import { useRouter } from "next/navigation";
 import { ToastAction } from "@/components/ui/toast"
 import { useToast } from "@/hooks/use-toast"
+import axios from "axios"
+import { url } from "@/url"
 
 
 const formSchema = z.object({
 
-  email: z.string().min(1, "Email is required").email({ message: "Invalid email address" }),
+  email: z.string().min(1, "Email is required"),
   password: z.string().min(1, "Password is required")
 })
 
@@ -48,18 +50,25 @@ export default function Login() {
 
     try {
 
-      const response = await credentialLogin(values);
+      const response = await axios.post(url + "/auth/login", {
+        email: values.email,
+        password: values.password
+      })
 
-      if (response.error) {
-        throw new Error(response.error.message)
-      } 
-      
-      else {
+      if (response.data.status) {
+
         form.reset();
+
+        await credentialLogin(response.data.user);
+
         router.push("/");
       }
-    } 
-    
+
+      else {
+        throw new Error(response.data.message);
+      }
+    }
+
     catch (error) {
 
       if (error instanceof Error) {

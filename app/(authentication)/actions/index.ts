@@ -3,28 +3,24 @@
 import { signIn, signOut } from "@/auth";
 
 export async function login(formData: FormData) {
-    const action = formData.get('action') as string
-    await signIn(action, { redirectTo: "/" });
+  const action = formData.get('action') as string
+  await signIn(action, { redirectTo: "/" });
 }
 
 export async function logout() {
   await signOut({ redirectTo: "/" });
 }
 
-export async function credentialLogin({email, password}: {email: string, password: string}) {
+interface User {
+  _id: string;
+  email: string;
+  username: string;
+  photo: string;
+  provider: string;
+  balance: number;
+}
 
-  try {
+export async function credentialLogin(user: User) {
 
-    const response = await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    })
-
-    return response
-  } 
-
-  catch (error) {
-    throw error
-  }
+  await signIn("credentials", user)
 }
