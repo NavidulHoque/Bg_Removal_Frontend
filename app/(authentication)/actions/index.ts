@@ -11,16 +11,8 @@ export async function logout() {
   await signOut({ redirectTo: "/" });
 }
 
-interface User {
-  _id: string;
-  email: string;
-  username: string;
-  photo: string;
-  provider: string;
-  balance: number;
-}
 
-export async function credentialLogin(user: User) {
+export async function credentialLogin({email, password}: {email: string, password: string}) {
 
-  await signIn("credentials", user)
+  await signIn("credentials", {email, password})
 }

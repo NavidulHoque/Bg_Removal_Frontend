@@ -18,7 +18,6 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { credentialLogin } from "../actions"
 import { useRouter } from "next/navigation";
-import { ToastAction } from "@/components/ui/toast"
 import { useToast } from "@/hooks/use-toast"
 import axios from "axios"
 import { url } from "@/url"
@@ -59,7 +58,7 @@ export default function Login() {
 
         form.reset();
 
-        await credentialLogin(response.data.user);
+        await credentialLogin(values);
 
         router.push("/");
       }
@@ -76,7 +75,6 @@ export default function Login() {
         toast({
           variant: "error",
           description: error.message,
-          action: <ToastAction altText="Try again">Try again</ToastAction>
         })
       }
     }
