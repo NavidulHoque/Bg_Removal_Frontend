@@ -15,8 +15,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             params: {
                 prompt: "consent",
                 access_type: "offline",
-                response_type: "code",
-                scope: "openid email profile",
+                response_type: "code"
             },
         },
     }),
@@ -27,8 +26,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             params: {
                 prompt: "consent",
                 access_type: "offline",
-                response_type: "code",
-                scope: "openid email profile",
+                response_type: "code"
             },
         },
     }),
@@ -65,6 +63,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     callbacks: {
         async signIn({ user, account, profile }) {
 
+            
+
             if (account?.provider === "credentials") {
 
                 return !!user; // Allow sign-in if a user was returned by `authorize`
@@ -90,5 +90,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 }
             }
         },
+
+        // async jwt({ token, user }) {
+        //     if (user) {
+        //         token.id = user.id;
+        //         token.email = user.email;
+        //         token.name = user.name;
+        //     }
+        //     return token;
+        // },
+
+        // async session({ session, token }) {
+        //     if (token) {
+        //         session.user.id = token.id as string;
+        //         session.user.email = token.email as string;
+        //         session.user.name = token.name;
+        //     }
+        //     return session;
+        // },
     }
 })
