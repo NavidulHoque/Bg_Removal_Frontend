@@ -63,8 +63,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     callbacks: {
         async signIn({ user, account, profile }) {
 
-            
-
             if (account?.provider === "credentials") {
 
                 return !!user; // Allow sign-in if a user was returned by `authorize`
@@ -72,16 +70,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
             else {
                 // User signed in using OAuth provider
-                console.log("ujala")
                 try {
-                    const response = await axios.post(url + '/api/users', {
+                    await axios.post(url + '/auth/registration', {
                         email: user.email,
                         username: user.name,
                         photo: user.image,
                         provider: account?.provider,
-                    });
+                    })
 
-                    return response.data.user;
+                    return true;
                 }
 
                 catch (error) {
@@ -91,22 +88,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             }
         },
 
-        // async jwt({ token, user }) {
-        //     if (user) {
-        //         token.id = user.id;
-        //         token.email = user.email;
-        //         token.name = user.name;
-        //     }
-        //     return token;
-        // },
+        jwt({ token, account }) {
+            if (account) { // Account is available during sign-in
+                token.provider = account.provider
+            }
+            return token
+        },
 
-        // async session({ session, token }) {
-        //     if (token) {
-        //         session.user.id = token.id as string;
-        //         session.user.email = token.email as string;
-        //         session.user.name = token.name;
-        //     }
-        //     return session;
-        // },
+        session({ session, token }) {
+            session.user.provider = token.provider
+            return session
+        },
     }
 })
