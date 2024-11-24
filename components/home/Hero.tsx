@@ -1,9 +1,14 @@
-import Image from "next/image";
-import Button from "./Button";
-import hero from "@/public/images/hero.png"
-
 /* eslint-disable react/no-unescaped-entities */
-export default function Hero() {
+import Image from "next/image";
+import ShadButton from "./ShadButton";
+import hero from "@/public/images/hero.png"
+import { auth } from "@/auth";
+
+
+export default async function Hero() {
+
+  const session = await auth()
+
   return (
     <div className="flex-between gap-x-32 py-20">
 
@@ -18,7 +23,7 @@ export default function Hero() {
 
         <p className="text-[18px] text-[#515151]">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever.</p>
 
-        <Button />
+        <ShadButton session={session} />
 
       </div>
 

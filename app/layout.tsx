@@ -1,6 +1,7 @@
 import { Outfit } from 'next/font/google';
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster"
+import AppProvider from '@/context/AppContext';
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -21,7 +22,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         className={`${outfit.className} bg-[#F7FBFF] text-[#353535] pb-7`}
       >
         <Toaster />
-        {children}
+        <AppProvider>
+          {children}
+        </AppProvider>
       </body>
 
     </html>

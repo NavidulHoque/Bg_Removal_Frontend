@@ -44,7 +44,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
                 if (response.data.status) {
 
-                    user = response.data.User
+                    user = response.data.user
+                    console.log(user)
                     return user
                 }
 
@@ -64,6 +65,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         async signIn({ user, account, profile }) {
 
             if (account?.provider === "credentials") {
+
+                
 
                 return !!user; // Allow sign-in if a user was returned by `authorize`
             }

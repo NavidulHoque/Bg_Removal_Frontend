@@ -18,7 +18,6 @@ import Link from "next/link"
 import axios from "axios"
 import { url } from "@/url"
 import { useRouter } from "next/navigation";
-import { ToastAction } from "@/components/ui/toast"
 import { useToast } from "@/hooks/use-toast"
 
 
@@ -93,8 +92,7 @@ export default function Registration() {
 
         toast({
           variant: "error",
-          description: error.message,
-          action: <ToastAction altText="Try again">Try again</ToastAction>
+          description: error.message
         })
 
       }

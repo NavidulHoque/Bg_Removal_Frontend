@@ -1,21 +1,17 @@
 import Footer from '@/components/footer/Footer'
 import Navbar from '@/components/navbar/Navbar'
-import CreditsProvider from '@/context/CreditsContext'
+import CreditsProvider from '@/context/AppContext'
 import React from 'react'
 
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <main className='w-[80vw] mx-auto'>
 
-            <CreditsProvider>
+            <Navbar />
 
-                <Navbar />
+            {children}
 
-                {children}
-
-                <Footer />
-                
-            </CreditsProvider>
+            <Footer />
 
         </main>
     )

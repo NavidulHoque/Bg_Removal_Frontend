@@ -1,4 +1,4 @@
-import Button from "./Button";
+import ShadButton from "./ShadButton";
 
 export default function TryNow() {
   return (
@@ -8,7 +8,7 @@ export default function TryNow() {
 
       <div className="self-center">
 
-        <Button />
+        <ShadButton />
 
       </div>
 

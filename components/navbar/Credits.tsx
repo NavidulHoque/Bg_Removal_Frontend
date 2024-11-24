@@ -1,18 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import useCredits from "@/hooks/useCredits";
+import useCredits from "@/hooks/useApp";
 import { Session } from "next-auth";
 import { useEffect } from "react";
 
 export default function Credits({session}: {session: Session}) {
 
-    const { values: { credits, loadCreditsData } } = useCredits()
+    const { values: { credits, fetchData } } = useCredits()
 
     useEffect(() => {
       
-        loadCreditsData(session)
+        fetchData(session)
       
-    }, [loadCreditsData, session])
+    }, [session])
     
 
     return <span>{credits}</span>
