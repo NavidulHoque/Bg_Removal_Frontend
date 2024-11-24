@@ -40,11 +40,11 @@ export default function UserInfo({ session }: { session: Session | null }) {
 
                 <Image src={credit} alt="credit" quality={100} className="size-6" />
 
-                <p>credits left: <Credits session={session} /></p>
+                <p className="text-[18px]">credits left: <Credits session={session} /></p>
 
             </div>
 
-            <span>Hi! {name}</span>
+            <p className="text-[20px]">Hi! {name}</p>
 
             {image}
 
