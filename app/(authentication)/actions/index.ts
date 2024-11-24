@@ -14,5 +14,5 @@ export async function logout() {
 
 export async function credentialLogin({email, password}: {email: string, password: string}) {
 
-  await signIn("credentials", {email, password})
+  await signIn("credentials", {email, password, redirect: false})
 }

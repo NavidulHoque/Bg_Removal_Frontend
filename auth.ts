@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import NextAuth from "next-auth"
 import Google from "next-auth/providers/google"
 import GitHub from "next-auth/providers/github"
 import Credentials from "next-auth/providers/credentials"
 import axios from "axios"
 import { url } from "./url"
+
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
 
@@ -45,7 +45,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 if (response.data.status) {
 
                     user = response.data.user
-                    console.log(user)
                     return user
                 }
 
@@ -55,18 +54,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
             }
 
-            catch (error) {
+            catch {
                 return null
             }
         }
     })],
 
     callbacks: {
-        async signIn({ user, account, profile }) {
+        async signIn({ user, account }) {
 
             if (account?.provider === "credentials") {
-
-                
 
                 return !!user; // Allow sign-in if a user was returned by `authorize`
             }
