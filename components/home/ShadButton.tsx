@@ -5,25 +5,39 @@ import { Button } from '@/components/ui/button';
 import useCredits from "@/hooks/useApp";
 import { useRef } from "react";
 import { Session } from "next-auth";
+import { useRouter } from 'next/navigation'
 
-export default function ShadButton({session}: {session: Session}) {
+export default function ShadButton({session}: {session: Session | null}) {
 
     const { values: { removeBg } } = useCredits()
     
     const fileRef = useRef<HTMLInputElement | null>(null)
 
+    const router = useRouter()
+
+    const handleClick = () => {
+
+        if (session?.user) {
+            fileRef.current?.click()
+        }
+
+        else{
+            router.push("/login")
+        }
+    }
+
     return (
         <>
             <input
                 ref={fileRef}
-                onChange={(e) => removeBg(e.target.files?.[0])}
+                onChange={(e) => removeBg(e.target.files?.[0] as File)}
                 type="file"
                 accept="image/*"
                 hidden
             />
 
             <Button
-                onClick={() => fileRef.current?.click()}
+                onClick={handleClick}
                 className="bg-gradient-violet-fuchsia text-20-normal-white flex-center gap-x-2 w-[266px] h-[67px] rounded-full hover-scale"
             >
                 <Upload />Upload your image
