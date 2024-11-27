@@ -23,7 +23,7 @@ export default function LogOut() {
     <form onSubmit={handleSubmit}>
 
       <Button 
-        className="bg-blue-400 disabled:bg-blue-300 text-[20px] my-2 text-white py-1 px-2 rounded" 
+        className="bg-blue-400 disabled:bg-blue-300 hover:bg-blue-500 text-[20px] my-2 text-white py-1 px-2 rounded" 
         type="submit"
         disabled={loading}
       >

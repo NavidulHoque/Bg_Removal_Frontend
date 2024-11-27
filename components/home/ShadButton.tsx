@@ -2,14 +2,14 @@
 
 import Upload from "@/icons/Upload"
 import { Button } from '@/components/ui/button';
-import useCredits from "@/hooks/useApp";
+import useApp from "@/hooks/useApp";
 import { useRef } from "react";
 import { Session } from "next-auth";
 import { useRouter } from 'next/navigation'
 
 export default function ShadButton({session}: {session: Session | null}) {
 
-    const { values: { removeBg } } = useCredits()
+    const { values: { removeBg } } = useApp()
     
     const fileRef = useRef<HTMLInputElement | null>(null)
 

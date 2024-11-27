@@ -51,6 +51,10 @@
     @apply font-medium text-[14px] leading-7 text-[#62577B];
   }
 
+  .result_page_button{
+    @apply text-18-medium w-[240px] h-[60px] rounded-full hover-scale;
+  }
+
   .image_container{
     @apply flex-column gap-y-4;
   }

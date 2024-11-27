@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { createContext, useState, Dispatch, SetStateAction } from "react";
+import { createContext, useState, Dispatch, SetStateAction, useEffect } from "react";
 import axios from "axios";
 import { url } from "@/url";
 import { Session } from "next-auth";
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from 'next/navigation'
+import { fileToBase64 } from "@/lib/utils";
 
 
 export interface User {
@@ -26,8 +27,10 @@ export interface AppContextType {
         fetchData: (session: Session) => Promise<void>;
         removeBg: (imageFile: File) => Promise<void>;
         user: User;
-        image: File | null;
+        image: string;
         bgRemovedImage: string;
+        setImage: Dispatch<SetStateAction<string>>;
+        setBgRemovedImage: Dispatch<SetStateAction<string>>;
     }
 }
 
@@ -39,11 +42,26 @@ export default function AppProvider({ children }: { children: React.ReactNode })
 
     const [credits, setCredits] = useState<number>(5)
     const [user, setUser] = useState<User>({} as User)
-    const [image, setImage] = useState<File | null>(null)
+    const [image, setImage] = useState<string>("")
     const [bgRemovedImage, setBgRemovedImage] = useState<string>("")
+
 
     const router = useRouter()
     const { toast } = useToast()
+
+    useEffect(() => {
+
+        const realImageFromLocalStorage = localStorage.getItem("realImageOfBgRemoval")
+        const bgRemovedImageFromLocalStorage = localStorage.getItem("bgRemovedImageOfBgRemoval")
+
+        if (realImageFromLocalStorage || bgRemovedImageFromLocalStorage) {
+
+            setImage(JSON.parse(realImageFromLocalStorage ?? ""))
+            setBgRemovedImage(JSON.parse(bgRemovedImageFromLocalStorage ?? ""))
+        }
+
+    }, [])
+
 
     const fetchData = async (session: Session) => {
 
@@ -60,19 +78,36 @@ export default function AppProvider({ children }: { children: React.ReactNode })
             }
         }
 
-        catch (error) {
+        catch {
 
             toast({
                 variant: "error",
-                description: error instanceof Error && error.message
+                description: "Something went wrong, might be network issue, please reload the page"
             })
         }
 
     }
 
-    // const updateCreditsData = async () => {
+    const updateCreditsData = async () => {
 
-    // }
+        try {
+            const response = await axios.put(url + "/user/updateCredits", {
+                email: user.email,
+                provider: user.provider,
+                creditBalance: user.creditBalance
+            })
+
+            if (response.data.status) {
+
+                setUser(response.data.user)
+                setCredits(response.data.user.creditBalance)
+            }
+        }
+
+        catch (error) {
+            console.error(error) //nothing to do as user's objective has been achieved, what can he do if there are some server related issues
+        }
+    }
 
     const removeBg = async (imageFile: File) => {
 
@@ -80,7 +115,19 @@ export default function AppProvider({ children }: { children: React.ReactNode })
 
             router.push("/result")
 
-            setImage(imageFile)
+            let realImageBase64, realImageUrl
+
+            try {
+                realImageBase64 = await fileToBase64(imageFile);
+                setImage(realImageBase64)
+            }
+
+            catch {
+
+                realImageUrl = imageFile && URL.createObjectURL(imageFile)
+
+                setImage(realImageUrl)
+            }
 
             const formData = new FormData()
 
@@ -95,24 +142,26 @@ export default function AppProvider({ children }: { children: React.ReactNode })
                     responseType: "arraybuffer" // will give binary image data directly in response.data
                 })
 
-                const blob = new Blob([response.data], { type: 'image/png' });
+                const base64String = Buffer.from(response.data, 'binary').toString('base64')
+                const base64Image = `data:image/png;base64,${base64String}`
 
-                const imageUrl = URL.createObjectURL(blob)
+                setBgRemovedImage(base64Image)
 
-                setBgRemovedImage(imageUrl)
+                localStorage.setItem("realImageOfBgRemoval", JSON.stringify(realImageBase64 || realImageUrl))
+                localStorage.setItem("bgRemovedImageOfBgRemoval", JSON.stringify(base64Image))
 
-                setCredits(prev => prev - 1)
+                await updateCreditsData()
             }
 
             catch {
                 toast({
                     variant: "error",
-                    description: "Something went wrong, please try to upload your image again"
+                    description: "Something went wrong, please try again to upload your image again"
                 })
             }
         }
 
-        else{
+        else {
             router.push("/buy")
         }
     }
@@ -124,7 +173,9 @@ export default function AppProvider({ children }: { children: React.ReactNode })
         removeBg,
         user,
         image,
-        bgRemovedImage
+        bgRemovedImage,
+        setImage,
+        setBgRemovedImage
     }
 
     return (
