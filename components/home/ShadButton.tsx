@@ -2,14 +2,14 @@
 
 import Upload from "@/icons/Upload"
 import { Button } from '@/components/ui/button';
-import useApp from "@/hooks/useApp";
+import useUserCredits from "@/hooks/useUserCredits";
 import { useRef } from "react";
 import { Session } from "next-auth";
 import { useRouter } from 'next/navigation'
 
 export default function ShadButton({session}: {session: Session | null}) {
 
-    const { values: { removeBg } } = useApp()
+    const { values: { removeBg } } = useUserCredits()
     
     const fileRef = useRef<HTMLInputElement | null>(null)
 
@@ -30,7 +30,7 @@ export default function ShadButton({session}: {session: Session | null}) {
         <>
             <input
                 ref={fileRef}
-                onChange={(e) => removeBg(e.target.files?.[0] as File)}
+                onChange={(e) => removeBg(e.target.files?.[0] as File, false)}
                 type="file"
                 accept="image/*"
                 hidden

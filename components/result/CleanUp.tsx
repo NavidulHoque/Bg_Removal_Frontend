@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import useApp from "@/hooks/useApp"
+import useApp from "@/hooks/useUserCredits"
 import { useEffect } from "react"
 
 export default function CleanUp() {

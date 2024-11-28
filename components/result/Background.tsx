@@ -1,6 +1,6 @@
 "use client"
 
-import useApp from "@/hooks/useApp"
+import useApp from "@/hooks/useUserCredits"
 import Image from "next/image"
 import Loader from "./Loader"
 

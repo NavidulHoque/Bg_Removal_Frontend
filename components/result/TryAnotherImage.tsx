@@ -1,7 +1,8 @@
 "use client"
 
 import { Button } from '@/components/ui/button';
-import useApp from "@/hooks/useApp";
+import useApp from "@/hooks/useUserCredits";
+import { delay } from '@/lib/utils';
 import { useRef } from "react";
 
 export default function TryAnotherImage() {
@@ -10,12 +11,14 @@ export default function TryAnotherImage() {
 
     const fileRef = useRef<HTMLInputElement | null>(null)
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
 
         setImage("")
         setBgRemovedImage("")
 
-        removeBg(e.target.files?.[0] as File)
+        await delay()
+
+        removeBg(e.target.files?.[0] as File, true)
     }
     
     return (
@@ -30,7 +33,7 @@ export default function TryAnotherImage() {
 
             <Button
                 onClick={() => fileRef.current?.click()}
-                className="result_page_button text-[#8448FD] bg-white border-[1px] border-[#8448FD]"
+                className="result_page_button hover:bg-white text-[#8448FD] bg-white border-[1px] border-[#8448FD]"
             >
                 Try another image
             </Button>

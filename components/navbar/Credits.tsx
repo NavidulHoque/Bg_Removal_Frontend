@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import useCredits from "@/hooks/useApp";
+import useCredits from "@/hooks/useUserCredits";
 import { Session } from "next-auth";
 import { useEffect } from "react";
 

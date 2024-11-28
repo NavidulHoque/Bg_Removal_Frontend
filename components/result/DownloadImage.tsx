@@ -1,6 +1,6 @@
 "use client"
 
-import useApp from "@/hooks/useApp"
+import useApp from "@/hooks/useUserCredits"
 
 export default function DownloadImage() {
 

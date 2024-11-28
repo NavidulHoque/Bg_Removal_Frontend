@@ -13,3 +13,8 @@ export const fileToBase64 = (file: File): Promise<string> => {
       reader.onerror = (error) => reject(error);
   })
 }
+
+//for let react to update it's state
+export function delay(): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, 20))
+}

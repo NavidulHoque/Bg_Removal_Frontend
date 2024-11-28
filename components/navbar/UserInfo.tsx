@@ -36,7 +36,9 @@ export default function UserInfo({ session }: { session: Session | null }) {
     return (
         <div className="flex-center gap-x-5">
 
-            <div className="bg-[#D7EBFF] w-[200px] h-[50px] flex-center gap-x-3 rounded-full hover-scale cursor-pointer">
+            <div 
+                className="bg-[#D7EBFF] w-[200px] h-[50px] flex-center gap-x-3 rounded-full hover-scale cursor-pointer"
+            >
 
                 <Image src={credit} alt="credit" quality={100} className="size-6" />
 

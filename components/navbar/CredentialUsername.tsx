@@ -1,10 +1,10 @@
 "use client"
 
-import useApp from "@/hooks/useApp"
+import useUserCredits from "@/hooks/useUserCredits"
 
 export default function CredentialUsername() {
 
-    const { values: { user } } = useApp()
+    const { values: { user } } = useUserCredits()
 
     return user.username
 }

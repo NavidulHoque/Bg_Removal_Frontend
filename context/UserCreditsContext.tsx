@@ -20,12 +20,12 @@ export interface User {
     creditBalance: number;
 }
 
-export interface AppContextType {
+export interface UserCreditsContextType {
     values: {
         credits: number;
         setCredits: Dispatch<SetStateAction<number>>;
         fetchData: (session: Session) => Promise<void>;
-        removeBg: (imageFile: File) => Promise<void>;
+        removeBg: (imageFile: File, flag: boolean) => Promise<void>;
         user: User;
         image: string;
         bgRemovedImage: string;
@@ -35,10 +35,10 @@ export interface AppContextType {
 }
 
 
-export const AppContext = createContext<AppContextType>({} as AppContextType)
+export const UserCreditsContext = createContext<UserCreditsContextType>({} as UserCreditsContextType)
 
 
-export default function AppProvider({ children }: { children: React.ReactNode }) {
+export default function UserCreditsProvider({ children }: { children: React.ReactNode }) {
 
     const [credits, setCredits] = useState<number>(5)
     const [user, setUser] = useState<User>({} as User)
@@ -109,11 +109,13 @@ export default function AppProvider({ children }: { children: React.ReactNode })
         }
     }
 
-    const removeBg = async (imageFile: File) => {
+    const removeBg = async (imageFile: File, flag: boolean) => {
 
         if (credits > 0) {
 
-            router.push("/result")
+            if (!flag) {
+                router.push("/result")
+            }
 
             let realImageBase64, realImageUrl
 
@@ -156,7 +158,7 @@ export default function AppProvider({ children }: { children: React.ReactNode })
             catch {
                 toast({
                     variant: "error",
-                    description: "Something went wrong, please try again to upload your image again"
+                    description: "Something went wrong, please try to upload your image again"
                 })
             }
         }
@@ -179,9 +181,8 @@ export default function AppProvider({ children }: { children: React.ReactNode })
     }
 
     return (
-        <AppContext.Provider value={{ values }}>
+        <UserCreditsContext.Provider value={{ values }}>
             {children}
-        </AppContext.Provider>
+        </UserCreditsContext.Provider>
     )
-
 }
