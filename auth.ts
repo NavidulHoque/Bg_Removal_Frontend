@@ -8,57 +8,58 @@ import { url } from "./url"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
 
-    providers: [Google({
-        clientId: process.env.AUTH_GOOGLE_ID,
-        clientSecret: process.env.AUTH_GOOGLE_SECRET,
-        authorization: {
-            params: {
-                prompt: "consent",
-                access_type: "offline",
-                response_type: "code"
+    providers: [
+        Google({
+            clientId: process.env.AUTH_GOOGLE_ID,
+            clientSecret: process.env.AUTH_GOOGLE_SECRET,
+            authorization: {
+                params: {
+                    prompt: "consent",
+                    access_type: "offline",
+                    response_type: "code"
+                },
             },
-        },
-    }),
-    GitHub({
-        clientId: process.env.AUTH_GITHUB_ID,
-        clientSecret: process.env.AUTH_GITHUB_SECRET,
-        authorization: {
-            params: {
-                prompt: "consent",
-                access_type: "offline",
-                response_type: "code"
+        }),
+        GitHub({
+            clientId: process.env.AUTH_GITHUB_ID,
+            clientSecret: process.env.AUTH_GITHUB_SECRET,
+            authorization: {
+                params: {
+                    prompt: "consent",
+                    access_type: "offline",
+                    response_type: "code"
+                },
             },
-        },
-    }),
-    Credentials({
+        }),
+        Credentials({
 
-        authorize: async (credentials) => {
+            authorize: async (credentials) => {
 
-            try {
-                const response = await axios.post(url + "/auth/login", {
-                    email: credentials.email,
-                    password: credentials.password
-                })
+                try {
+                    const response = await axios.post(url + "/auth/login", {
+                        email: credentials.email,
+                        password: credentials.password
+                    })
 
-                let user
+                    let user
 
-                if (response.data.status) {
+                    if (response.data.status) {
 
-                    user = response.data.user
-                    return user
+                        user = response.data.user
+                        return user
+                    }
+
+                    else {
+                        return null
+                    }
+
                 }
 
-                else {
+                catch {
                     return null
                 }
-
             }
-
-            catch {
-                return null
-            }
-        }
-    })],
+        })],
 
     callbacks: {
         async signIn({ user, account }) {
