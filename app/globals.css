@@ -101,13 +101,16 @@
 }
 
 .slider {
-  -webkit-appearance: none;
-  /* -moz-appearance: none; */
+  -webkit-appearance: none; /* Chrome/Safari */
+  -moz-appearance: none;    /* Firefox */
+  appearance: none;         /* Standard */
   height: 100%;
   background: transparent;
+  outline: none;
 }
 
-.slider::-webkit-slider-thumb {
+.slider::-webkit-slider-thumb {  /* Chrome/Safari */
+  -webkit-appearance: none; 
   appearance: none;
   width: 30px;
   min-height: 30px;
@@ -115,6 +118,31 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {  /* Firefox */
+  width: 30px;
+  height: 30px;
+  background-image: url(/slide_icon.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.slider::-ms-thumb { /* For Edge (older versions) */
+  width: 30px;
+  height: 30px;
+  background-image: url(/slide_icon.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.slider::-moz-focus-outer { /* Firefox removes focus border */
+  border: 0;
 }
 
 @layer base {
