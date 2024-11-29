@@ -5,7 +5,6 @@ import TryAnotherImage from "@/components/result/TryAnotherImage"
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import CleanUp from "@/components/result/CleanUp";
-import transparentBg from "@/public/images/bg_layer.png"
 
 
 export default async function Result() {
@@ -18,17 +17,17 @@ export default async function Result() {
     <>
       <CleanUp />
 
-      <section className='h-[82vh] pt-12'>
+      <section className='min-h-[82vh] py-12'>
 
-        <div className='bg-[#FFFFFF] flex-column gap-y-7 w-full min-h-[600px] rounded-[15px] border-[1px] border-[#EDEDED] shadow-[0_2px_2px_rgba(0,0,0,0.08)] px-[70px] py-[50px]'>
+        <div className='bg-[#FFFFFF] flex-column gap-y-7 w-full rounded-[15px] border-[1px] border-[#EDEDED] shadow-[0_2px_2px_rgba(0,0,0,0.08)] md:px-[70px] md:py-[50px] p-10'>
 
-          <div className="flex gap-x-12">
+          <div className="flex sm:flex-row flex-col gap-12">
 
             <div className='image_container'>
 
               <h2 className='text-20-medium'>Original</h2>
 
-              <div className='image_wrapper flex-center'>
+              <div className='flex-center'>
 
                 <Background />
 
@@ -41,8 +40,8 @@ export default async function Result() {
               <h2 className='text-20-medium'>Background Removed</h2>
 
               <div
-                className='image_wrapper flex-center bg-cover bg-no-repeat'
-                style={{ backgroundImage: `url(${transparentBg})` }}
+                className='flex-center bg-cover bg-no-repeat'
+                style={{ backgroundImage: `url(/images/bg_layer.png)` }}
               >
                 <Foreground />
 
@@ -52,7 +51,7 @@ export default async function Result() {
 
           </div>
 
-          <div className="self-end flex gap-x-4">
+          <div className="sm:self-end flex sm:flex-row flex-col gap-4">
 
             <TryAnotherImage />
 

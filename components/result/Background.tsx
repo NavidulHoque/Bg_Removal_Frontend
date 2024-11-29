@@ -14,8 +14,9 @@ export default function Background() {
             {image ? (
                 <Image 
                     src={image} 
-                    alt="background" 
-                    fill 
+                    alt="background"
+                    width={670}
+                    height={386}
                     className="object-cover"
                 />
             ) : (

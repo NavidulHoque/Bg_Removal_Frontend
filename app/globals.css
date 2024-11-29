@@ -52,15 +52,11 @@
   }
 
   .result_page_button{
-    @apply text-18-medium w-[240px] h-[60px] rounded-full hover-scale;
+    @apply text-18-medium px-5 h-[60px] rounded-full hover-scale;
   }
 
   .image_container{
     @apply flex-column gap-y-4;
-  }
-
-  .image_wrapper{
-    @apply w-[670px] h-[386px] relative;
   }
 
   .flex-between {

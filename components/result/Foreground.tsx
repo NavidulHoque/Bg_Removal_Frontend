@@ -15,7 +15,8 @@ export default function Foreground() {
                 <Image 
                     src={bgRemovedImage} 
                     alt="foreground" 
-                    fill
+                    width={670}
+                    height={386}
                     className="object-cover"
                 />
             ) : (

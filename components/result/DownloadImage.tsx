@@ -8,7 +8,7 @@ export default function DownloadImage() {
 
   return (
     <a 
-      className="result_page_button inline-block flex-center text-white bg-gradient-violet-fuchsia"
+      className="result_page_button flex-center text-white bg-gradient-violet-fuchsia"
       href={bgRemovedImage}
       download
     >

@@ -4,12 +4,14 @@ import AppProvider from './AppProvider'
 
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <main className='w-[80vw] mx-auto'>
-
-            <Navbar />
+        <main className='lg:w-[80vw] w-[90vw] mx-auto'>
 
             <AppProvider>
+
+                <Navbar />
+
                 {children}
+                
             </AppProvider>
 
             <Footer />
