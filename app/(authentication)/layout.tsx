@@ -12,7 +12,7 @@ export default async function Layout({ children }: Readonly<{ children: React.Re
   return (
     <section className='flex-center min-h-screen'>
 
-      <div className='w-full max-w-md bg-white shadow-lg rounded-lg p-8 flex-column gap-y-6'>
+      <div className='sm:w-full sm:max-w-md w-[90vw] bg-white shadow-lg rounded-lg p-8 flex-column gap-y-6'>
 
         <ShowHeading />
 

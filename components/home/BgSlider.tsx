@@ -3,7 +3,8 @@
 import { useState } from "react"
 import background from "@/public/images/background.png"
 import foreground from "@/public/images/foreground.png"
-import ImageComp from "./ImageComp"
+
+import Image from 'next/image';
 
 export default function BgSlider() {
   const [sliderPosition, setSliderPosition] = useState<number>(50)
@@ -15,18 +16,21 @@ export default function BgSlider() {
 
       <h1 className="title">Remove Background With High <br /> Quality and Accuracy</h1>
 
-      <div className="self-center w-[860px] h-[532px] relative overflow-hidden rounded-lg">
+      <div className="self-center w-full max-w-3xl relative overflow-hidden rounded-lg">
 
-        <ImageComp
+        <Image
           src={background}
           alt="background"
-          clipPath={`inset(0 ${100.1 - sliderPosition}% 0 0)`}
+          quality={100}
+          style={{ clipPath: `inset(0 ${100.1 - sliderPosition}% 0 0)` }}
         />
 
-        <ImageComp
+        <Image
           src={foreground}
           alt="foreground"
-          clipPath={`inset(0 0 0 ${sliderPosition}%)`}
+          quality={100}
+          className="absolute top-0 left-0 w-full h-full"
+          style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
         />
 
         <input

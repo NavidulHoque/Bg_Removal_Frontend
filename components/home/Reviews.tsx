@@ -1,6 +1,10 @@
 import { reviews } from "@/data/reviews";
 import Image from "next/image";
 import { Review } from '@/data/reviews';
+import {
+  Card,
+  CardContent
+} from "@/components/ui/card"
 
 export default function Reviews() {
   return (
@@ -8,37 +12,39 @@ export default function Reviews() {
 
       <h1 className='title'>Customer Testimonials</h1>
 
-      <div className="grid grid-cols-2 gap-20">
+      <div className="grid md:grid-cols-2 gap-20">
 
         {reviews.map((review: Review) => (
 
-          <div
-            key={review.id}
-            className="card flex-column !space-y-0 rounded-[14px]"
-          >
-            <span className="text-55-medium-62577B_violet">”</span>
+          <Card key={review.id} className="card flex-column rounded-[14px]">
 
-            <p className="text-[18px] leading-7 text-[#797484] pb-4">{review.text}</p>
+            <CardContent className="py-3">
 
-            <div className="flex gap-x-4">
+              <span className="text-55-medium-62577B_violet">”</span>
 
-              <Image
-                src={review.image}
-                alt="image"
-                className="rounded-full size-[55px]"
-              />
+              <p className="text-[18px] leading-7 text-[#797484] pb-4">{review.text}</p>
 
-              <div className="flex-column">
+              <div className="flex gap-x-4">
 
-                <h3 className="text-22-medium text-[#4B445A]">{review.author}</h3>
+                <Image
+                  src={review.image}
+                  alt="image"
+                  className="rounded-full size-[55px]"
+                />
 
-                <span className="text-14-medium-62577B_violet">{review.jobTitle}</span>
+                <div className="flex-column">
+
+                  <h3 className="text-22-medium text-[#4B445A]">{review.author}</h3>
+
+                  <span className="text-14-medium-62577B_violet">{review.jobTitle}</span>
+
+                </div>
 
               </div>
 
-            </div>
+            </CardContent>
 
-          </div>
+          </Card>
 
         ))}
 

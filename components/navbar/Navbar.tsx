@@ -9,7 +9,7 @@ export default async function Navbar() {
   const session = await auth()
 
   return (
-    <nav className="w-full flex-between py-5">
+    <nav className={`w-full flex-between ${session?.user ? "min-[900px]:flex-row" : "sm:flex-row"} flex-col gap-y-5 py-5`}>
 
       <Link
         className="cursor-pointer"

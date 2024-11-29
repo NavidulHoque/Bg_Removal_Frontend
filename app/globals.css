@@ -7,12 +7,20 @@
     @apply font-semibold text-[70px] leading-[80px];
   }
 
+  .text-50-semibold{
+    @apply font-semibold text-[50px] leading-[63px];
+  }
+
   .text-55-medium-62577B_violet{
     @apply font-medium text-[55px] leading-9 text-[#62577B];
   }
 
   .text-40-medium{
     @apply font-medium text-[40px] leading-9 text-[#515151];
+  }
+
+  .text-40-semibold{
+    @apply font-semibold text-[40px] leading-[50px];
   }
 
   .text-24-medium{
@@ -72,11 +80,11 @@
   }
 
   .title{
-    @apply self-center text-[50px] leading-[63px] text-center bg-gradient-to-r from-[#353535] to-[#9B9B9B] bg-clip-text text-transparent font-semibold;
+    @apply self-center sm:text-50-semibold text-40-semibold text-center bg-gradient-to-r from-[#353535] to-[#9B9B9B] bg-clip-text text-transparent;
   }
 
   .card{
-    @apply p-8 border-[1px] border-[#E1E1E1] shadow-[0_4px_15px_rgba(0,0,0,0.05)] space-y-3 cursor-pointer hover-scale;
+    @apply p-3 border-[1px] border-[#E1E1E1] shadow-[0_4px_15px_rgba(0,0,0,0.05)] space-y-3 cursor-pointer hover-scale;
   }
 
   .hover-scale {

@@ -1,4 +1,4 @@
-import ShadButton from "./ShadButton";
+import UploadImage from "./UploadImage";
 import { Session } from "next-auth";
 
 export default function TryNow({session}: {session: Session | null}) {
@@ -9,7 +9,7 @@ export default function TryNow({session}: {session: Session | null}) {
 
       <div className="self-center">
 
-        <ShadButton session={session} />
+        <UploadImage session={session} />
 
       </div>
 

@@ -7,7 +7,7 @@ import { Session } from "next-auth";
 import { useRouter } from 'next/navigation'
 import useImage from "@/hooks/useImage";
 
-export default function ShadButton({session}: {session: Session | null}) {
+export default function UploadImage({session}: {session: Session | null}) {
 
     const { values: { removeBg } } = useImage()
     

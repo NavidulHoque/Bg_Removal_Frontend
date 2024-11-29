@@ -140,6 +140,7 @@ export default function Login() {
           />
 
           <Button
+            variant="authentication"
             type="submit"
             size="lg"
             disabled={isSubmitting}

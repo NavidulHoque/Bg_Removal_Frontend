@@ -24,7 +24,7 @@ export default function Credits({ session }: { session: Session }) {
 
     return (
         <Button
-            className="bg-[#D7EBFF] hover:bg-[#D7EBFF] text-black w-[200px] h-[50px] flex-center gap-x-3 rounded-full hover-scale cursor-pointer font-normal"
+            className="bg-[#D7EBFF] w-[200px] h-[50px] flex-center gap-x-3 rounded-full hover-scale cursor-pointer font-normal"
             onClick={() => router.push("/buy")}
         >
 

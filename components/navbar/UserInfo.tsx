@@ -34,7 +34,7 @@ export default function UserInfo({ session }: { session: Session | null }) {
     const name = (session?.user?.provider !== "credentials" ? session?.user?.name : <CredentialUsername />)
 
     return (
-        <div className="flex-center gap-x-5">
+        <div className="flex-center sm:flex-row flex-col gap-x-5 gap-y-3">
 
             <Credits session={session} />
 
