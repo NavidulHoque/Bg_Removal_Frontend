@@ -2,8 +2,15 @@ import Button from "@/components/buyCredit/Button";
 import Card from "@/components/buyCredit/Card";
 import { plans } from "@/data/plans";
 import { Plan } from "@/data/plans";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
-export default function BuyCredit() {
+export default async function BuyCredit() {
+
+  const session = await auth()
+
+  if (!session?.user) redirect("/");
+
   return (
     <section className='h-[82vh] pt-12'>
 
