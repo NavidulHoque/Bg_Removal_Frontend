@@ -2,12 +2,10 @@
 import Image from "next/image";
 import ShadButton from "./ShadButton";
 import hero from "@/public/images/hero.png"
-import { auth } from "@/auth";
+import { Session } from "next-auth";
 
 
-export default async function Hero() {
-
-  const session = await auth()
+export default function Hero({session}: {session: Session | null}) {
 
   return (
     <div className="flex-between gap-x-32 py-20">

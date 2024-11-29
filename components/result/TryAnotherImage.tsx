@@ -1,13 +1,13 @@
 "use client"
 
 import { Button } from '@/components/ui/button';
-import useApp from "@/hooks/useUserCredits";
+import useImage from "@/hooks/useImage";
 import { delay } from '@/lib/utils';
 import { useRef } from "react";
 
 export default function TryAnotherImage() {
 
-    const { values: { removeBg, setImage, setBgRemovedImage } } = useApp()
+    const { values: { removeBg, setImage, setBgRemovedImage } } = useImage()
 
     const fileRef = useRef<HTMLInputElement | null>(null)
 

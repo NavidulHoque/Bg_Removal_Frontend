@@ -1,13 +1,13 @@
 "use client"
 
-import useApp from "@/hooks/useUserCredits"
+import useImage from "@/hooks/useImage"
 import Image from "next/image"
 import Loader from "./Loader"
 
 
 export default function Foreground() {
 
-    const { values: { bgRemovedImage } } = useApp()
+    const { values: { bgRemovedImage } } = useImage()
 
     return (
         <>

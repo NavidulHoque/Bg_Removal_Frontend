@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import useApp from "@/hooks/useUserCredits"
+import useImage from "@/hooks/useImage"
 import { useEffect } from "react"
 
 export default function CleanUp() {
 
-    const {values: {setImage, setBgRemovedImage}} = useApp()
+    const {values: {setImage, setBgRemovedImage}} = useImage()
 
     useEffect(() => {
 

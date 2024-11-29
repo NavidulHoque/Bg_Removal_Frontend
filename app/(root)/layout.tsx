@@ -1,5 +1,6 @@
 import Footer from '@/components/footer/Footer'
 import Navbar from '@/components/navbar/Navbar'
+import AppProvider from './AppProvider'
 
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
@@ -7,7 +8,9 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
 
             <Navbar />
 
-            {children}
+            <AppProvider>
+                {children}
+            </AppProvider>
 
             <Footer />
 

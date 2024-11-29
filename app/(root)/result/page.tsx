@@ -5,6 +5,7 @@ import TryAnotherImage from "@/components/result/TryAnotherImage"
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import CleanUp from "@/components/result/CleanUp";
+import transparentBg from "@/public/images/bg_layer.png"
 
 
 export default async function Result() {
@@ -39,8 +40,10 @@ export default async function Result() {
 
               <h2 className='text-20-medium'>Background Removed</h2>
 
-              <div className='image_wrapper flex-center'>
-
+              <div
+                className='image_wrapper flex-center bg-cover bg-no-repeat'
+                style={{ backgroundImage: `url(${transparentBg})` }}
+              >
                 <Foreground />
 
               </div>

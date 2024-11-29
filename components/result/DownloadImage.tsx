@@ -1,10 +1,10 @@
 "use client"
 
-import useApp from "@/hooks/useUserCredits"
+import useImage from "@/hooks/useImage"
 
 export default function DownloadImage() {
 
-  const { values: { bgRemovedImage } } = useApp()
+  const { values: { bgRemovedImage } } = useImage()
 
   return (
     <a 

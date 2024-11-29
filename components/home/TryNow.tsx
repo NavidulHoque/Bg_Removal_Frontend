@@ -1,6 +1,7 @@
 import ShadButton from "./ShadButton";
+import { Session } from "next-auth";
 
-export default function TryNow() {
+export default function TryNow({session}: {session: Session | null}) {
   return (
     <div className="flex-column gap-y-10 pt-20 pb-40">
 
@@ -8,7 +9,7 @@ export default function TryNow() {
 
       <div className="self-center">
 
-        <ShadButton />
+        <ShadButton session={session} />
 
       </div>
 
