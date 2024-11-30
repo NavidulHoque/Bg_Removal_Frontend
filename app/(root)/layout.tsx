@@ -3,6 +3,7 @@ import Navbar from '@/components/navbar/Navbar'
 import AppProvider from './AppProvider'
 
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
+
     return (
         <main className='2xl:w-[80vw] w-[90vw] mx-auto'>
 
