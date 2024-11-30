@@ -1,10 +1,10 @@
 import DownloadImage from "@/components/result/DownloadImage"
-import Background from "@/components/result/Background"
-import Foreground from "@/components/result/Foreground"
 import TryAnotherImage from "@/components/result/TryAnotherImage"
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import CleanUp from "@/components/result/CleanUp";
+import Foreground from "@/components/result/Foreground";
+import Background from "@/components/result/Background";
 
 
 export default async function Result() {
@@ -23,7 +23,7 @@ export default async function Result() {
 
           <div className="flex sm:flex-row flex-col gap-12">
 
-            <div className='image_container'>
+            <div className='image_container sm:w-[50%]'>
 
               <h2 className='text-20-medium'>Original</h2>
 
@@ -35,12 +35,12 @@ export default async function Result() {
 
             </div>
 
-            <div className='image_container'>
+            <div className='image_container sm:w-[50%]'>
 
               <h2 className='text-20-medium'>Background Removed</h2>
 
               <div
-                className='flex-center bg-cover bg-no-repeat'
+                className='flex-center h-full bg-cover bg-no-repeat'
                 style={{ backgroundImage: `url(/images/bg_layer.png)` }}
               >
                 <Foreground />
