@@ -56,11 +56,11 @@ export default function Login() {
 
       if (response.data.status) {
 
-        form.reset();
-
         await credentialLogin(values);
 
-        router.push("/");
+        form.reset();
+
+        router.push("/")
       }
 
       else {
