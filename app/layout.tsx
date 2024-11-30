@@ -9,7 +9,7 @@ const outfit = Outfit({
 
 export const metadata = {
   title: "BgRemoval",
-  description: "This website removes background of an image"
+  description: "This web application removes background of an image"
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
