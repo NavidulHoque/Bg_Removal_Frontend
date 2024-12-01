@@ -9,9 +9,15 @@ import Background from "@/components/result/Background";
 
 export default async function Result() {
 
-  const session = await auth()
-
-  if (!session?.user) redirect("/");
+  try {
+    const session = await auth();
+    
+    if (!session?.user) redirect("/");
+  } 
+  
+  catch (error) {
+    console.error("Authentication failed", error)
+  }
 
   return (
     <>

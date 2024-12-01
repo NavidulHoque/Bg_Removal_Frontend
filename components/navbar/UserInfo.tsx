@@ -1,7 +1,5 @@
 import { Session } from "next-auth"
 import LogOut from "./LogOut";
-
-
 import Image from "next/image";
 import Credits from "./Credits";
 import CredentialUsername from "./CredentialUsername";

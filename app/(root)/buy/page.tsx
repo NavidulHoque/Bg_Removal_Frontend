@@ -17,9 +17,15 @@ import {
 
 export default async function BuyCredit() {
 
-  const session = await auth()
-
-  if (!session?.user) redirect("/");
+  try {
+    const session = await auth();
+    
+    if (!session?.user) redirect("/");
+  } 
+  
+  catch (error) {
+    console.error("Authentication failed", error)
+  }
 
   return (
     <section className='min-h-[82vh] py-12'>
