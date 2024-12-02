@@ -63,18 +63,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         })
     ],
 
-    cookies: {
-        sessionToken: {
-            name: "next-auth.session-token",
-            options: {
-                httpOnly: true,
-                secure: NEXT_PUBLIC_ENVIRONMENT === 'production', // Use secure cookies in production
-                sameSite: NEXT_PUBLIC_ENVIRONMENT === "development" ? "strict" : "none",
-                path: '/',
-                domain: NEXT_PUBLIC_ENVIRONMENT === 'production' ? 'bgremoval23.netlify.app' : undefined 
-            },
-        },
-    },
+    // cookies: {
+    //     sessionToken: {
+    //         name: "next-auth.session-token",
+    //         options: {
+    //             httpOnly: true,
+    //             secure: NEXT_PUBLIC_ENVIRONMENT === 'production', // Use secure cookies in production
+    //             sameSite: NEXT_PUBLIC_ENVIRONMENT === "development" ? "strict" : "none",
+    //             path: '/',
+    //             domain: NEXT_PUBLIC_ENVIRONMENT === 'production' ? 'bgremoval23.netlify.app' : undefined 
+    //         },
+    //     },
+    // },
 
     callbacks: {
         async signIn({ user, account }) {
