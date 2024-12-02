@@ -7,10 +7,7 @@ import TryNow from "@/components/home/TryNow";
 
 export default async function Home() {
 
-  const session = await auth().catch((error: Error) => {
-
-    throw new Error(error.message)
-  })
+  const session = await auth()
   
   return (
     <section>

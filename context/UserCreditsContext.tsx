@@ -45,6 +45,8 @@ export default function UserCreditsProvider({ children }: { children: React.Reac
             const response = await axios.post(url + "/user/read", {
                 email: session?.user?.email,
                 provider: session?.user?.provider
+            }, {
+                withCredentials: true
             })
 
             if (response.data.status) {
@@ -70,6 +72,8 @@ export default function UserCreditsProvider({ children }: { children: React.Reac
                 email: user.email,
                 provider: user.provider,
                 creditBalance: user.creditBalance
+            }, {
+                withCredentials: true
             })
 
             if (response.data.status) {

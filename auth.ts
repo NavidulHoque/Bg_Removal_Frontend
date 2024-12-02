@@ -4,14 +4,15 @@ import GitHub from "next-auth/providers/github"
 import Credentials from "next-auth/providers/credentials"
 import axios from "axios"
 import { url } from "./url"
+import { AUTH_GITHUB_ID, AUTH_GITHUB_SECRET, AUTH_GOOGLE_ID, AUTH_GOOGLE_SECRET, NEXT_PUBLIC_ENVIRONMENT } from "./env"
 
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
 
     providers: [
         Google({
-            clientId: process.env.AUTH_GOOGLE_ID,
-            clientSecret: process.env.AUTH_GOOGLE_SECRET,
+            clientId: AUTH_GOOGLE_ID,
+            clientSecret: AUTH_GOOGLE_SECRET,
             authorization: {
                 params: {
                     prompt: "consent",
@@ -21,8 +22,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             },
         }),
         GitHub({
-            clientId: process.env.AUTH_GITHUB_ID,
-            clientSecret: process.env.AUTH_GITHUB_SECRET,
+            clientId: AUTH_GITHUB_ID,
+            clientSecret: AUTH_GITHUB_SECRET,
             authorization: {
                 params: {
                     prompt: "consent",
@@ -59,7 +60,21 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     return null
                 }
             }
-        })],
+        })
+    ],
+
+    cookies: {
+        sessionToken: {
+            name: "next-auth.session-token",
+            options: {
+                httpOnly: true,
+                secure: NEXT_PUBLIC_ENVIRONMENT === 'production', // Use secure cookies in production
+                sameSite: NEXT_PUBLIC_ENVIRONMENT === "development" ? "strict" : "none",
+                path: '/',
+                domain: NEXT_PUBLIC_ENVIRONMENT === 'production' ? 'bgremoval23.netlify.app' : undefined 
+            },
+        },
+    },
 
     callbacks: {
         async signIn({ user, account }) {
