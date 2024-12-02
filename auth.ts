@@ -4,7 +4,7 @@ import GitHub from "next-auth/providers/github"
 import Credentials from "next-auth/providers/credentials"
 import axios from "axios"
 import { url } from "./url"
-import { AUTH_GITHUB_ID, AUTH_GITHUB_SECRET, AUTH_GOOGLE_ID, AUTH_GOOGLE_SECRET, NEXT_PUBLIC_ENVIRONMENT } from "./env"
+import { AUTH_GITHUB_ID, AUTH_GITHUB_SECRET, AUTH_GOOGLE_ID, AUTH_GOOGLE_SECRET } from "./env"
 
 
 export const { handlers, signIn, signOut, auth } = NextAuth({

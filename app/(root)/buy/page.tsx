@@ -1,8 +1,6 @@
 import GetStarted from "@/components/buyCredit/GetStarted";
 import { plans } from "@/data/plans";
 import { Plan } from "@/data/plans";
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
 import Image from "next/image";
 import logo from "@/public/images/logo_icon.png"
 import OurPlans from "@/components/buyCredit/OurPlans";
@@ -15,11 +13,7 @@ import {
 } from "@/components/ui/card"
 
 
-export default async function BuyCredit() {
-
-  const session = await auth()
-    
-  if (!session?.user) redirect("/");
+export default function BuyCredit() {
 
   return (
     <section className='min-h-[82vh] py-12'>

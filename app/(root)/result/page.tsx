@@ -1,17 +1,11 @@
 import DownloadImage from "@/components/result/DownloadImage"
 import TryAnotherImage from "@/components/result/TryAnotherImage"
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
 import CleanUp from "@/components/result/CleanUp";
 import Foreground from "@/components/result/Foreground";
 import Background from "@/components/result/Background";
 
 
 export default async function Result() {
-
-  const session = await auth()
-
-  if (!session?.user) redirect("/")
 
   return (
     <>
