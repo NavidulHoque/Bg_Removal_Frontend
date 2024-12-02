@@ -16,7 +16,7 @@
   }
 
   .text-40-medium{
-    @apply font-medium text-[40px] leading-9 text-[#515151];
+    @apply font-medium text-[40px] leading-9;
   }
 
   .text-40-semibold{
