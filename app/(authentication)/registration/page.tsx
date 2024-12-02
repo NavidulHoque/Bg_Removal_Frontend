@@ -29,7 +29,7 @@ const formSchema = z.object({
     .max(10, { message: "Username cannot exceed 10 characters" })
     .regex(/^[a-zA-Z0-9]+$/, { message: "Username can only contain alphanumeric characters (no special characters or spaces allowed)." }),
 
-  email: z.string().email({ message: "Invalid email address" }).min(1, "Email is required"),
+  email: z.string().min(1, "Email is required").email({ message: "Invalid email address" }),
 
   password: z.string()
     .min(1, "Password is required")
