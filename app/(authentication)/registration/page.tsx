@@ -185,7 +185,6 @@ export default function Registration() {
           />
 
           <Button
-            variant="authentication"
             type="submit"
             size="lg"
             disabled={isSubmitting}
